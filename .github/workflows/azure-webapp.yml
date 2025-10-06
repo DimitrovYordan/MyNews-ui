@@ -19,15 +19,14 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build Angular
+      - name: Build Angular app
         run: npm run build -- --configuration production
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: shortglobenews
-          slot-name: production
+          app-name: 'shortglobenews'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ./dist/MyNews-ui/browser
+          package: './dist/MyNews-ui/browser'
