@@ -37,9 +37,10 @@ yarn-error.log
 # ========================
 # Environment / secrets
 # ========================
-.env
+# Ignore local dev settings, but keep production environment
 src/environments/environment.ts
-src/environments/environment.prod.ts
+# DO NOT ignore production file
+!src/environments/environment.prod.ts
 
 # ========================
 # Miscellaneous / system files
