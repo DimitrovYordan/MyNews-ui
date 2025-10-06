@@ -1,0 +1,53 @@
+# ========================
+# Compiled output / build
+# ========================
+/dist
+/tmp
+/out-tsc
+
+# ========================
+# Node / Angular
+# ========================
+/node_modules
+npm-debug.log
+yarn-error.log
+/.angular/cache
+/coverage
+/temp
+
+# ========================
+# IDEs / editors
+# ========================
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# ========================
+# Environment / secrets
+# ========================
+.env
+src/environments/environment.ts
+src/environments/environment.prod.ts
+
+# ========================
+# Miscellaneous / system files
+# ========================
+.sass-cache/
+.connect.lock
+/libpeerconnection.log
+testem.log
+/typings
+.DS_Store
+Thumbs.db

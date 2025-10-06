@@ -1,0 +1,12 @@
+{
+  "NAV_LOGIN": "Вход",
+  "NAV_SIGNUP": "Регистрация",
+  "NAV_PROFILE": "Профил",
+  "NAV_SECTIONS": "Секции",
+  "NAV_NEWS": "Новини",
+  "NAV_CONTACT": "Свържете се с мен",
+  "NAV_LOGOUT": "Изход",
+  "FOOTER_TEXT": "&copy; 2025 My News. Всички права запазени.",
+  "WELCOME_TITLE": "Добре дошли в My News!",
+  "WELCOME_TEXT": "Следете последните новини в различни категории."
+}

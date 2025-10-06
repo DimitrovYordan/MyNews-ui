@@ -1,0 +1,49 @@
+<div class="form-content">
+  <h2 class="form-title">Log In</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" formControlName="email" />
+      @if (loginForm.get('email')?.touched && loginForm.get('email')?.invalid) {
+        @if (loginForm.get('email')?.hasError('required')){
+          <small class="error">Email is required.</small>
+        }
+        @if (loginForm.get('email')?.hasError('email')) {
+          <small class="error">Enter a valid email.</small>
+        }
+      }
+    </div>
+
+    <div class="form-group password-group">
+      <label>Password</label>
+      <div class="password-wrapper">
+        <input [type]="showPassword ? 'text' : 'password'" formControlName="password" />
+        <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="showPassword = !showPassword">
+        </i>
+      </div>
+      @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+        @if (loginForm.get('password')?.hasError('required')) {
+          <small class="error">Password is required.</small>
+        }
+        @if (loginForm.get('password')?.hasError('minlength')) {
+          <small class="error">Password must be at least 6 characters.</small>
+        }
+      }
+    </div>
+
+    @if (errorMessage) {
+    <div class="error-message error">
+      {{ errorMessage }}
+    </div>
+    }
+
+    <button type="submit" [disabled]="loading">Log In</button>
+  </form>
+
+  <button type="button" class="forgot-password-btn" (click)="triggerForgotPassword()">
+    <a routerLink="/forgot-password">Forgot Password?</a>
+  </button>
+
+  <button type="button" class="close-btn" (click)="closeLogin()">Close</button>
+</div>

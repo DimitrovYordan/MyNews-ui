@@ -1,0 +1,11 @@
+<div class="delete-account-wrapper">
+    <h2>Delete Account</h2>
+    <p class="warning">This action cannot be undone. Are you sure?</p>
+
+    <button class="danger-btn" (click)="openConfirm()">Delete Account</button>
+
+    <app-modal [show]="showConfirm" [showCancel]="true" type="error"
+        message="Are you sure you want to delete your account? This action cannot be undone."
+        (closed)="closeConfirm($event)">
+    </app-modal>
+</div>

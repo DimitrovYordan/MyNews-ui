@@ -1,0 +1,13 @@
+@if (show) {
+<div class="modal-window">
+    <div class="modal" [ngClass]="type">
+        <p>{{ message }}</p>
+        @if (showCancel){
+        <!-- <button class="confirm" (click)="confirm()">OK</button>
+        <button class="cancel" (click)="cancel()">Cancel</button> -->
+        } @else if (!autoClose) {
+            <button class="confirm">Choose your favorite sections</button>
+        }
+    </div>
+</div>
+}

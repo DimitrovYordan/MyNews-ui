@@ -1,0 +1,35 @@
+.settings-container {
+    display: flex;
+    gap: 20px;
+}
+
+.settings-menu {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+
+    button {
+        padding: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border: none;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        text-align: left;
+
+        &.active {
+            background-color: #007bff;
+            color: white;
+        }
+    }
+}
+
+.settings-content {
+    flex: 1;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-content {
+    margin: 0 auto;
+}

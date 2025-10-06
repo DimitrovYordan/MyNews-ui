@@ -1,0 +1,88 @@
+<div class="sections-container">
+  
+  <div class="top-bar">
+    <button type="button" class="back-btn" (click)="goBack()">Back</button>
+
+    <div class="search-container">
+      <input type="text" placeholder="Search news..." [(ngModel)]="searchTerm" />
+    </div>
+
+    <div class="language-selector">
+      <select (change)="onLanguageChange($event)">
+        <option value="EN">English</option>
+        <option value="BG">Български</option>
+        <option value="DE">Deutsch</option>
+        <option value="FR">Français</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="sections-list" cdkDropList (cdkDropListDropped)="dropSection($event)">
+    @for (section of sectionsWithNews; track section.sectionId) {
+    <div class="section-bubble" cdkDrag>
+      <h2>
+        <span class="drag-handle" cdkDragHandle>
+          ☰
+          <span class="tooltip-text">Drag to reorder sections</span>
+        </span>
+        {{ sectionName.formatSectionName(section.sectionName) }}
+      </h2>
+
+      <div class="source-container">
+        @for (source of section.groupedNews; track source.key) {
+        <div class="source-bubble" [class.selected]="source.isOpen" (click)="toggleSource(section.sectionId, source)">
+          <span class="domain">{{ sectionName.getDomain(source.key) }}</span>
+          <span class="count-news">{{ getFilteredItems(source).count }}</span>
+        </div>
+
+        @if (source.isOpen) {
+        <ul class="dropdown-news" (click)="$event.stopPropagation()">
+          <li class="section-divider">Unreaded</li>
+
+          @if (getFilteredItems(source).unread.length > 0) {
+          @for (item of getFilteredItems(source).unread; track item.id) {
+          <li class="news-item unread" (click)="toggleNewsItem(source, item)">
+            <div class="news-header">
+              <span class="news-title">
+                {{ getTitle(item) }}
+                <span class="unread-dot"></span>
+              </span>
+              <span class="news-date">{{ item.publishedAt | date: 'short' }}</span>
+            </div>
+            @if (source.openItemId === item.id) {
+            <p class="news-content">{{ getSummary(item) }}</p>
+            <a [href]="item.link" target="_blank" (click)="onArticleLinkClick($event, item)">Read full article here</a>
+            }
+          </li>
+          }
+          } @else {
+          <li class="news-item empty">No new news.</li>
+          }
+
+          <li class="divider"></li>
+
+          <li class="section-divider">Readed</li>
+          @if (getFilteredItems(source).read.length > 0) {
+          @for (item of getFilteredItems(source).read; track item.id) {
+          <li class="news-item read" (click)="toggleNewsItem(source, item)">
+            <div class="news-header">
+              <span class="news-title">{{ getTitle(item) }}</span>
+              <span class="news-date">{{ item.publishedAt | date: 'short' }}</span>
+            </div>
+            @if (source.openItemId === item.id) {
+            <p class="news-content">{{ getSummary(item) }}</p>
+            <a [href]="item.link" target="_blank" (click)="onArticleLinkClick($event, item)">Read full article here</a>
+            }
+          </li>
+          }
+          } @else {
+          <li class="news-item empty">No read news yet.</li>
+          }
+        </ul>
+        }
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>

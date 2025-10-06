@@ -1,0 +1,45 @@
+<div class="app-container">
+    <nav class="navbar">
+        <div class="nav-brand">My Globe News</div>
+        <div class="nav-buttons">
+            @if(!isLoggedIn) {
+            <ng-container>
+                <button (click)="openLogin()">{{ 'NAV_LOGIN' | translate }}</button>
+                <button (click)="openSignup()">{{ 'NAV_SIGNUP' | translate }}</button>
+            </ng-container>
+            } @else {
+            <div class="user-menu" (click)="$event.stopPropagation(); toggleMenu()" [class.open]="isMenuOpen">
+                <button class="user-avatar">{{ getInitials() }}</button>
+                @if(isMenuOpen) {
+                <div class="user-dropdown" (click)="$event.stopPropagation()">
+                    <button (click)="goToProfile()">{{ 'NAV_PROFILE' | translate }}</button>
+                    <button (click)="goToSections()">{{ 'NAV_SECTIONS' | translate }}</button>
+                    <button (click)="goToNews()">{{ 'NAV_NEWS' | translate }}</button>
+                    <button (click)="goToContact()">{{ 'NAV_CONTACT' | translate }}</button>
+                    <button (click)="logout()">{{ 'NAV_LOGOUT' | translate }}</button>
+                </div>
+                }
+            </div>
+            }
+        </div>
+    </nav>
+
+    <main class="content">
+        @if (isLoading()) {
+        <app-loader></app-loader>
+        }
+
+        @if(showWelcomeText) {
+        <div class="welcome-text">
+            <h1>{{ 'WELCOME_TITLE' | translate }}</h1>
+            <p>{{ 'WELCOME_TEXT' | translate }}</p>
+        </div>
+        }
+
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="footer">
+        <p [innerHTML]="'FOOTER_TEXT' | translate"></p>
+    </footer>
+</div>

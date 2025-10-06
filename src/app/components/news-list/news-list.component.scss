@@ -1,0 +1,293 @@
+/* ---------- Layout / Containers ---------- */
+.sections-container {
+  display: block;
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+.sections-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  grid-column: 2;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+
+/* ---------- Select Language ---------- */
+.language-selector {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.language-selector select {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.language-selector select:hover {
+  border-color: #888;
+}
+
+/* ---------- Buttons ---------- */
+.back-btn {
+  grid-column: 1;
+  align-self: start;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- Sections & Sources ---------- */
+.section-bubble {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #f5f5f5;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.section-bubble:hover {
+  transform: translateY(3px);
+}
+
+.section-bubble h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.source-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.source-container .dropdown-news {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
+.source-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.source-bubble:hover {
+  transform: translateY(-2px);
+}
+
+.source-bubble .domain {
+  font-weight: bold;
+  margin-right: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.source-bubble .count-news {
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+/* ---------- News list & Items ---------- */
+.dropdown-news {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.25rem;
+}
+
+.news-item {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.news-item:hover {
+  background-color: #f0f0f0;
+  border-radius: 6px;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.news-title {
+  font-weight: 500;
+}
+
+.news-date {
+  color: #888;
+  font-size: 0.75rem;
+}
+
+.news-content {
+  margin-top: 0.5rem;
+  padding-left: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.news-item.clicked .news-title {
+  color: #888;
+  text-decoration: line-through;
+}
+
+.news-item.unread .news-title {
+  font-weight: bold;
+}
+
+.news-item.read .news-title {
+  color: #666;
+}
+
+/* ---------- Search bar ---------- */
+.search-container {
+  margin: 10px 0;
+  text-align: center;
+}
+
+.search-container input {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* ---------- Drag & Drop ---------- */
+.drag-handle {
+  cursor: grab;
+  margin-right: 10px;
+  font-size: 1rem;
+  color: #666;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+  color: #000;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px 8px;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+  font-size: 0.8rem;
+  z-index: 10;
+}
+
+.drag-handle:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ---------- Helpers / Decorations ---------- */
+.unread-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background-color: #2ecc71;
+}
+
+.divider {
+  border-bottom: 3px solid #ccc;
+  margin: 8px 0;
+}
+
+.section-divider {
+  font-weight: bold;
+  padding: 6px 0;
+  color: #444;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .sections-container {
+    grid-template-columns: 1fr;
+  }
+
+  .source-bubble {
+    max-width: calc(50% - 8px);
+  }
+
+  .back-btn {
+    grid-column: 1;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .sections-list {
+    grid-column: 1;
+  }
+
+  .news-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .source-bubble {
+    max-width: 100%;
+  }
+}

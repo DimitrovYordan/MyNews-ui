@@ -1,0 +1,43 @@
+@if (isLoading) {
+<div class="loading">
+    Loading sections...
+</div>
+}
+
+@if (showSections && !isLoading) {
+<div class="section-selection-wrapper">
+    <div class="section-selection">
+        <div class="select-all-container">
+            <button type="button" class="select-all-btn" [class.select-mode]="!isAllSelected"
+                [class.unselect-mode]="isAllSelected" (click)="toggleAll()">
+                {{ isAllSelected ? 'Unselect all' : 'Select all' }}
+            </button>
+        </div>
+
+
+        <form>
+            @for (section of sections; track section.id) {
+            <div class="section-card" (click)="toggleSelection(section.id)">
+                <label>
+                    <input type="checkbox" [checked]="selectedSections.includes(section.id)"
+                        (click)="$event.stopPropagation()" />
+                    {{ section.displayName ?? section.name }}
+                </label>
+            </div>
+            }
+        </form>
+
+        <button type="button" class="save-btn" (click)="saveSelection()" [disabled]="selectedSections.length === 0">
+            Save
+        </button>
+    </div>
+</div>
+}
+
+<app-modal 
+  [show]="showModal" 
+  [type]="modalType" 
+  [message]="modalMessage" 
+  [showCancel]="false"
+  (closed)="closeModal($event)">
+</app-modal>
