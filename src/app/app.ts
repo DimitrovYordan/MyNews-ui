@@ -14,7 +14,7 @@ export class MyTranslateLoader implements TranslateLoader {
   private http = inject(HttpClient);
 
   getTranslation(lang: string): Observable<any> {
-    return this.http.get(`/assets/i18n/${lang}.json`);
+    return this.http.get(`assets/i18n/${lang}.json`);
   }
 }
 
@@ -26,7 +26,7 @@ export class MyTranslateLoader implements TranslateLoader {
   styleUrls: ['./app.scss']
 })
 export class App implements OnInit {
-  protected readonly title = signal('My News');
+  protected readonly title = signal('My Globe News');
   private loadingService = inject(LoadingService);
   isLoading = this.loadingService.isLoading;
 
@@ -80,8 +80,9 @@ export class App implements OnInit {
     this.globeService.preload();
 
     const browserLang = this.translate.getBrowserLang() || 'en';
+    this.translate.addLangs(['en', 'bg']);
     this.translate.setFallbackLang('en');
-    this.translate.use(browserLang);
+    this.translate.use(browserLang.match('/en|/bg') ? browserLang : 'en');
 
     const user = this.authService.getCurrentUser();
     if (user) {
