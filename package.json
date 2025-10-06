@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "ng build --configuration production --no watch",
+    "build:prod": "ng build --configuration production --no-watch",
     "watch": "ng build --configuration development"
   },
   "prettier": {
