@@ -79,9 +79,9 @@ export class App implements OnInit {
   ngOnInit(): void {
     this.globeService.preload();
 
-    this.translate.setFallbackLang('en');
     const browserLang = (this.translate.getBrowserLang() || 'en').split('-')[0];
     this.translate.addLangs(['en', 'bg']);
+    this.translate.setFallbackLang('en');
     this.translate.use(browserLang.match(/en|bg/) ? browserLang : 'en');
 
     const user = this.authService.getCurrentUser();
