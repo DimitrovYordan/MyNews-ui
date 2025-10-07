@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://shortglobenews.azurewebsites.net/api'
+  apiUrl: 'https://shortglobenews-api.azurewebsites.net/api'
 };
